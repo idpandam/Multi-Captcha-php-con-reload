@@ -1,4 +1,9 @@
 <?php
+/*
+*	GESTIONE CAPTCHA (sessione)
+*/
+//error_reporting(E_ALL); ini_set('display_errors', 1);
+		
 class PaCaptcha {
 	protected $CaptchaName; //nome univoco img Captcha
 	protected $SessionName; //nome sessione
@@ -369,8 +374,8 @@ class PaCaptcha {
 	
 	protected static function CaptchaStartSession($SessionName='PaCaptcha'){
 		if (session_id()=='' || (function_exists('session_status') && session_status()==PHP_SESSION_NONE)) {
-			//$configSession=self::ConfigSession('file');
-			$configSession=self::ConfigSession('db');
+			$configSession=self::ConfigSession('file');
+			//$configSession=self::ConfigSession('db');
 			if(!empty($configSession)) {
 				$configSession->SetName($SessionName);
 				$configSession->StartSession();
